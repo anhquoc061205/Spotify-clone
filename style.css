@@ -145,7 +145,7 @@ main .card-section .section-header h2{
 }
 .track-section .track-card{
  border: 1px solid grey;
-width: calc(100%/3 - 20px);
+width: calc((100%/3) -20px);
 border-radius: 20px;
 background-color: rgba(255,255,255,0.2);
 }
