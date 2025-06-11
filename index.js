@@ -40,8 +40,38 @@ async function displayTrack(data) {
     
     // gắn nguyên cái thẻ dive đó vào track-section
     const trackSection = document.getElementById("track-section");
+    element.addEventListener("click", () => {
+      playTrack(item.id,name,artistsName)
+    });
     trackSection.appendChild(element);
   });
+}
+
+async function playTrack(id, name, artistsName){
+  // console.log(id,name,artistsName);
+  // console.log(id);
+  // console.log(name);
+  // console.log(artistsName);
+  // const iframe = document.createElement("iframe");
+  // iframe.src=`https://open.spotify.com/embed/track/${id}?utm_source=generator&theme=0`;
+  // console.log(iframe);
+  const srcUrl = `https://open.spotify.com/embed/track/${id}?utm_source=generator&theme=0`;
+  const iframe = document.getElementById("iframe");
+  iframe.src = srcUrl;
+  
+  const modalName = document.getElementById("modal-name");
+  console.log(modalName);
+  modalName.innerHTML = `🎵 ${name}`;
+
+   const modal = document.getElementById("modal");
+    modal.style.display = "flex";
+  
+
+}
+
+function closeModal (){
+  const modal = document.getElementById("modal");
+  modal.style.display = "none"
 }
 
 async function getPopularTrack() {

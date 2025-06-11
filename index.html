@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spotify-clone</title>
+    <link rel="icon" href="./img/Spotify_icon.svg.png">
     <link rel="stylesheet" href="./style.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -18,7 +19,9 @@
           <i class="fa-solid fa-music"></i>
           <h1>Spotify</h1>
         </div>
-        <nav>
+
+        
+
           <!-- <button>
             <i class="fa-solid fa-music"></i>
             Login Spotify
@@ -34,6 +37,8 @@
             <div class="circle"></div>
          </div>
           </button>
+
+           
 
   </div>
 
@@ -75,6 +80,7 @@
               </span>
 
            </section>
+            
               <!-- Track section -->
                <div id="track-section" class="track-section">
                 <!-- <div class="track-card-container">
@@ -87,12 +93,28 @@
                
                 </div>
 
-             
-                
-           
         </section>
+         
       </div>
+      
+     
+
     </main>
+    
+    <div id="modal" class="modal">
+
+      <div class="modal-header">
+        <h2 id="modal-name"></h2>
+        <i onClick="closeModal()" class="fa-solid fa-xmark"></i>
+      </div>
+
+      <iframe id="iframe" title="Spotify Embed: Recommendation Playlist "
+        src="https://open.spotify.com/embed/track/0eM8iGaE97UCf9yYbDiMA4?utm_source=generator&theme=0" width="100%"
+        height="100%" frameBorder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+      </iframe>
+      
+     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js" integrity="sha512-FPlUpimug7gt7Hn7swE8N2pHw/+oQMq/+R/hH/2hZ43VOQ+Kjh25rQzuLyPz7aUWKlRpI7wXbY6+U3oFPGjPOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./config.js"></script>
