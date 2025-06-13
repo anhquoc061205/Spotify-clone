@@ -1,9 +1,34 @@
 let accesstoken;
+let searchTimeout;
 
 document.addEventListener("DOMContentLoaded", function () {
   initialApp();
-});
+  setupSearchListener();
 
+});
+function setupSearchListener(){
+  const inputSearch = document.getElementById("searchInput");
+  inputSearch.addEventListener("input",  (e) => {
+
+
+    const querry = e.target.value.trim();
+    clearTimeout(searchTimeout);
+      // debounce
+    searchTimeout = setTimeout( async () => {
+      if(querry){
+     const response = await getPopularTrack(querry);
+        resetTrack();
+        displayTrack(response.tracks.items);
+       
+    }
+    },1000)
+   
+  });
+}
+function resetTrack(){
+  const trackSection = document.getElementById("track-section");
+      trackSection.innerHTML = ""; // xoá nội dung cũ
+}
 async function initialApp() {
   accesstoken = await getSpotifyToken();
   if (accesstoken) {
@@ -15,7 +40,7 @@ async function initialApp() {
 async function displayTrack(data) {
   console.log(data);
   data.forEach((item) => {
-    console.log(item.artists[0]);
+    // console.log(item.artists[0]);
     const imageURL = item.album.images[0].url;
     const name = item.album.name;
     
@@ -74,7 +99,7 @@ function closeModal (){
   modal.style.display = "none"
 }
 
-async function getPopularTrack() {
+async function getPopularTrack(querry = "top trending Việt Nam") {
   try {
 
     const query = document.getElementById("searchInput").value.trim(); // lấy nội input
@@ -87,7 +112,7 @@ async function getPopularTrack() {
         Authorization: `Bearer ${accesstoken}`,
       },
       params: {
-        q: actualQuery,
+        q: querry,
         type: "track",
         limit: "12",
         market: "VN",
