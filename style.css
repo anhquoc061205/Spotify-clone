@@ -97,6 +97,7 @@ main .search-container input{
     border-radius: 30px;
     background-color: rgba(255,255,255,0.2);
     padding-left: 40px;
+    color: white
   
 }
 main .search-container input::placeholder {
@@ -179,8 +180,12 @@ background-color: rgba(255,255,255,0.2);
     transform: translate(-50%, -50%);
     display: none;
     flex-direction: column;
+    position: fixed;
+    
 }
 .modal-header {
+    position: relative;
+    top: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -188,4 +193,6 @@ background-color: rgba(255,255,255,0.2);
     background-color: rgb(17, 25, 32);
     padding: 30px;
     border-radius: 25px 20px 0 0;
+    overflow: hidden;
+    
 }

@@ -76,23 +76,56 @@ function closeModal (){
 
 async function getPopularTrack() {
   try {
+
+    const query = document.getElementById("searchInput").value.trim(); // lấy nội input
+    const actualQuery = query || "top trending Việt Nam"; // từ khoá mặt định nếu input rỗng
+
+    
+
     const response = await axios.get("https://api.spotify.com/v1/search", {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
       params: {
-        q: "albums viet nam",
+        q: actualQuery,
         type: "track",
         limit: "12",
         market: "VN",
       }
     });
     // console.log(response);
+    
     return response.data;
+    
   } catch (e) {
     console.log(e);
+    
   }
 }
+
+// thêm sự kiện khi nhấn phím Enter:
+document.getElementById("searchInput").addEventListener("keydown", function(e){
+if (e.key === "Enter") {
+  e.preventDefault(); // 🔥 Ngăn form reload
+  const query = document.getElementById("searchInput").value.trim();
+if (!query) {
+  Swal.fire({
+  icon: 'warning',
+  title: 'Chưa nhập từ khóa!',
+  text: 'Vui lòng nhập từ khóa tìm kiếm để hiển thị kết quả.',
+  
+});
+  return;
+    }
+
+  getPopularTrack().then(data => {
+      const trackSection = document.getElementById("track-section");
+      trackSection.innerHTML = ""; // xoá nội dung cũ
+      displayTrack(data.tracks.items); // gọi lại hàm hiển thị bài hát mới
+
+  });
+}
+});
 
 async function getSpotifyToken() {
   try {
